@@ -34,10 +34,10 @@ public class Player {
     @OneToMany(mappedBy = "player", cascade = CascadeType.PERSIST)
     private Collection<PlayerPosition> positions;
 
-    @OneToMany(mappedBy = "player")
+    @OneToMany(mappedBy = "player", cascade = CascadeType.REFRESH)
     private Collection<TeamParticipation> teams;
 
-    @OneToMany(mappedBy = "player")
+    @OneToMany(mappedBy = "player", cascade = CascadeType.REFRESH)
     private Collection<TournamentParticipation> tournamentParticipations;
 
     public Collection<PlayerPosition> getPositions() {

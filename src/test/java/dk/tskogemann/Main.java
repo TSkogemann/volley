@@ -7,6 +7,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -58,7 +60,5 @@ public class Main {
         for (Player player : resultList) {
             System.out.println("player = " + player);
         }
-
-
     }
 }
