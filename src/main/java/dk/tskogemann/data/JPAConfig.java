@@ -55,6 +55,9 @@ public class JPAConfig {
         jpaProperties.setProperty(WEAVING, "false");
         //jpaProperties.setProperty(CACHE_SHARED_DEFAULT, "false");
         jpaProperties.put(DDL_GENERATION, PersistenceUnitProperties.DROP_AND_CREATE);
+        jpaProperties.put(CREATE_JDBC_DDL_FILE, "create.sql");
+        jpaProperties.put(DROP_JDBC_DDL_FILE, "drop.sql");
+        jpaProperties.put(DDL_GENERATION_MODE, DDL_BOTH_GENERATION);
 
 //        jpaProperties.put(LOGGING_FILE, "output.log");
         jpaProperties.put(LOGGING_LEVEL, "FINE");

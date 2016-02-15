@@ -16,6 +16,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "GAME") // Match is a reserved keyword in MYSQL
 public class Match {
 
     @Id

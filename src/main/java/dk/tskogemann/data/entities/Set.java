@@ -12,6 +12,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "GAME_SET") // set is a reserved word
 public class Set {
 
     @Id

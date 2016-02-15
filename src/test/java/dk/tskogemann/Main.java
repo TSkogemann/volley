@@ -16,10 +16,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-
-
         MysqlDataSource ds = new MysqlDataSource();
-        ds.setUser("admin");
+        ds.setUser("root");
         ds.setPassword("password");
         ds.setURL("jdbc:mysql://localhost:3306/volley");
 
@@ -54,10 +52,10 @@ public class Main {
         t = entityManager.find(Tournament.class, t.getId());
         System.out.println(t);
 
-        List<Team> resultList = entityManager.createQuery("select p.teams from Player p where p.firstName=:name", Team.class)
+        List<Player> resultList = entityManager.createQuery("select p from Player p where p.firstName=:name", Player.class)
                 .setParameter("name", "Klaus").getResultList();
 
-        for (Team player : resultList) {
+        for (Player player : resultList) {
             System.out.println("player = " + player);
         }
 

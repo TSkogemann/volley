@@ -1,5 +1,6 @@
 package dk.tskogemann.data.entities;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import lombok.Setter;
  *         Created 15/02/16.
  */
 @Entity
-@Getter
+//@Getter
 @Setter
 public class Round {
     @Id
@@ -38,7 +39,16 @@ public class Round {
         round = currentRound;
     }
 
+    public Collection<Match> getMatches() {
+        if (matches == null) {
+            matches = new ArrayList<>();
+        }
+        return matches;
+    }
+
     public Match createMatch() {
-        return new Match(this);
+        Match match = new Match(this);
+        getMatches().add(match);
+        return match;
     }
 }
