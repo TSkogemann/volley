@@ -21,7 +21,7 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "team" )
+    @OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST)
     private Collection<TeamParticipation> players;
 
     @ManyToOne

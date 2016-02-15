@@ -23,11 +23,11 @@ public class Match {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    @OneToMany(mappedBy = "match")
+    @OneToMany(mappedBy = "match", cascade = CascadeType.PERSIST)
     private Collection<Set> sets;
 
 
-    @OneToMany(mappedBy = "match")
+    @OneToMany(mappedBy = "match", cascade = CascadeType.PERSIST)
     private Collection<Team> teams;
 
     @ManyToOne

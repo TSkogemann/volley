@@ -31,8 +31,14 @@ public class Player {
     @Column(length = 50)
     private String lastName;
 
-    @OneToMany(mappedBy = "player")
+    @OneToMany(mappedBy = "player", cascade = CascadeType.PERSIST)
     private Collection<PlayerPosition> positions;
+
+    @OneToMany(mappedBy = "player")
+    private Collection<TeamParticipation> teams;
+
+    @OneToMany(mappedBy = "player")
+    private Collection<TournamentParticipation> tournamentParticipations;
 
     public Collection<PlayerPosition> getPositions() {
         if (positions == null) {

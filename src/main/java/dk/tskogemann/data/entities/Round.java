@@ -19,7 +19,7 @@ public class Round {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     @ManyToOne
     private Tournament tournament;
 
@@ -27,7 +27,7 @@ public class Round {
     private int round;
 
 
-    @OneToMany(mappedBy = "round")
+    @OneToMany(mappedBy = "round", cascade = CascadeType.PERSIST)
     private Collection<Match> matches;
 
     protected Round() {

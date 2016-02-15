@@ -17,11 +17,11 @@ public class TeamParticipation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     @ManyToOne(optional = false)
     private Player player;
 
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     @ManyToOne(optional = false)
     private Team team;
 

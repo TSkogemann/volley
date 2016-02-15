@@ -21,10 +21,10 @@ public class Tournament {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "tournament")
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.PERSIST)
     private Collection<TournamentParticipation> tournamentParticipants;
 
-    @OneToMany(mappedBy = "tournament")
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.PERSIST)
     private Collection<Round> rounds;
 
     @Column

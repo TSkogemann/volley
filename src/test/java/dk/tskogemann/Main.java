@@ -5,6 +5,10 @@ import dk.tskogemann.data.JPAConfig;
 import dk.tskogemann.data.entities.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import java.util.List;
+
 /**
  * @author Klaus Groenbaek
  *         Created 15/02/16.
@@ -14,16 +18,18 @@ public class Main {
 
 
 
+        MysqlDataSource ds = new MysqlDataSource();
+        ds.setUser("admin");
+        ds.setPassword("password");
+        ds.setURL("jdbc:mysql://localhost:3306/volley");
+
 
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.register(JPAConfig.class);
+        ctx.getBeanFactory().registerSingleton("ds", ds);
         ctx.refresh();
 
-
-        MysqlDataSource ds = new MysqlDataSource();
-        ds.setUser("root");
-        ds.setPassword("password");
-        ds.setURL("jdbc:mysql://localhost:3306/volley");
+        EntityManagerFactory emf = ctx.getBean(EntityManagerFactory.class);
 
         Tournament t = new Tournament();
         Player p = new Player().setFirstName("Klaus").setLastName("Grønbæk");
@@ -34,9 +40,26 @@ public class Main {
         Team team = m.addTeam();
         team.addPlayer(p);
 
+        EntityManager entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(t);
+            entityManager.persist(p);
+            entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
+        }
+
+        entityManager = emf.createEntityManager();
+        t = entityManager.find(Tournament.class, t.getId());
         System.out.println(t);
 
+        List<Team> resultList = entityManager.createQuery("select p.teams from Player p where p.firstName=:name", Team.class)
+                .setParameter("name", "Klaus").getResultList();
 
+        for (Team player : resultList) {
+            System.out.println("player = " + player);
+        }
 
 
     }

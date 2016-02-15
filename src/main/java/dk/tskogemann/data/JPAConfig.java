@@ -37,7 +37,7 @@ public class JPAConfig {
 
     private JpaVendorAdapter jpaVendorAdapter() {
         EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
-        jpaVendorAdapter.setDatabase(Database.POSTGRESQL);
+        jpaVendorAdapter.setDatabase(Database.MYSQL);
         return jpaVendorAdapter;
     }
 
@@ -54,10 +54,10 @@ public class JPAConfig {
         jpaProperties.setProperty("eclipselink.logging.parameters", "true");
         jpaProperties.setProperty(WEAVING, "false");
         //jpaProperties.setProperty(CACHE_SHARED_DEFAULT, "false");
-        jpaProperties.put(DDL_GENERATION, PersistenceUnitProperties.CREATE_ONLY);
+        jpaProperties.put(DDL_GENERATION, PersistenceUnitProperties.DROP_AND_CREATE);
 
 //        jpaProperties.put(LOGGING_FILE, "output.log");
-//        jpaProperties.put(LOGGING_LEVEL, "FINE");
+        jpaProperties.put(LOGGING_LEVEL, "FINE");
 
         LocalContainerEntityManagerFactoryBean lemfb = new LocalContainerEntityManagerFactoryBean();
         lemfb.setDataSource(dataSource);
