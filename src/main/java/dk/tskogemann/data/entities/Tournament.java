@@ -2,11 +2,13 @@ package dk.tskogemann.data.entities;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * @author Klaus Groenbaek
@@ -15,6 +17,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Accessors(chain = true)
 public class Tournament {
 
     @Id
@@ -29,6 +32,15 @@ public class Tournament {
 
     @Column
     private int currentRound;
+
+    @Column
+    private String name;
+
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date tournamentStart;
+
+
 
     public Collection<TournamentParticipation> getTournamentParticipants() {
         if (tournamentParticipants == null){

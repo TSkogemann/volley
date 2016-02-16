@@ -6,6 +6,7 @@ import java.util.UUID;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.persistence.config.PersistenceUnitProperties;
 
@@ -22,8 +23,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import static org.eclipse.persistence.config.PersistenceUnitProperties.*;
 
 /**
- *
  * The JPA configuration, requires a DataSource
+ *
  * @author Klaus Groenbaek
  *         Created 31/07/15.
  */
@@ -46,6 +47,15 @@ public class JPAConfig {
         return new JpaTransactionManager(emf);
     }
 
+    @Bean()
+    public DataSource createDataSource() {
+        MysqlDataSource ds = new MysqlDataSource();
+        ds.setUser("volley");
+        ds.setPassword("0tsea!md3r");
+        ds.setURL("jdbc:mysql://localhost:3306/volley?useUnicode=yes&characterEncoding=UTF-8");
+        return ds;
+    }
+
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
@@ -54,10 +64,10 @@ public class JPAConfig {
         jpaProperties.setProperty("eclipselink.logging.parameters", "true");
         jpaProperties.setProperty(WEAVING, "false");
         //jpaProperties.setProperty(CACHE_SHARED_DEFAULT, "false");
-        jpaProperties.put(DDL_GENERATION, PersistenceUnitProperties.DROP_AND_CREATE);
-        jpaProperties.put(CREATE_JDBC_DDL_FILE, "create.sql");
-        jpaProperties.put(DROP_JDBC_DDL_FILE, "drop.sql");
-        jpaProperties.put(DDL_GENERATION_MODE, DDL_BOTH_GENERATION);
+//        jpaProperties.put(DDL_GENERATION, PersistenceUnitProperties.DROP_AND_CREATE);
+//        jpaProperties.put(CREATE_JDBC_DDL_FILE, "create.sql");
+//        jpaProperties.put(DROP_JDBC_DDL_FILE, "drop.sql");
+//        jpaProperties.put(DDL_GENERATION_MODE, DDL_BOTH_GENERATION);
 
 //        jpaProperties.put(LOGGING_FILE, "output.log");
         jpaProperties.put(LOGGING_LEVEL, "FINE");

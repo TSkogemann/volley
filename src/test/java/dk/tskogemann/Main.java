@@ -18,15 +18,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        MysqlDataSource ds = new MysqlDataSource();
-        ds.setUser("root");
-        ds.setPassword("password");
-        ds.setURL("jdbc:mysql://localhost:3306/volley");
-
-
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.register(JPAConfig.class);
-        ctx.getBeanFactory().registerSingleton("ds", ds);
         ctx.refresh();
 
         EntityManagerFactory emf = ctx.getBean(EntityManagerFactory.class);
