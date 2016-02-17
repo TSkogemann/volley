@@ -17,7 +17,7 @@ import java.util.Collection;
 public class Team {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)

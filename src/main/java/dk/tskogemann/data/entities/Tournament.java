@@ -20,7 +20,7 @@ import java.util.Date;
 public class Tournament {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)

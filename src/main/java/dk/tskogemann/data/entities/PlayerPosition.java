@@ -1,9 +1,9 @@
 package dk.tskogemann.data.entities;
 
-import javax.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
 
 /**
  * @author Klaus Groenbaek
@@ -15,7 +15,7 @@ import lombok.Setter;
 public class PlayerPosition {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(optional = false)
