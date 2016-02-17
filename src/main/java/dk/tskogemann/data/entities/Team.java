@@ -1,12 +1,11 @@
 package dk.tskogemann.data.entities;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import javax.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * @author Klaus Groenbaek
@@ -21,7 +20,7 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private Collection<TeamParticipation> players;
 
     @ManyToOne

@@ -1,24 +1,21 @@
 package dk.tskogemann.data;
 
-import java.util.Properties;
-import java.util.UUID;
-
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.persistence.config.PersistenceUnitProperties;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+import java.util.Properties;
+import java.util.UUID;
 
 import static org.eclipse.persistence.config.PersistenceUnitProperties.*;
 
@@ -64,7 +61,7 @@ public class JPAConfig {
         jpaProperties.setProperty("eclipselink.logging.parameters", "true");
         jpaProperties.setProperty(WEAVING, "false");
         //jpaProperties.setProperty(CACHE_SHARED_DEFAULT, "false");
-//        jpaProperties.put(DDL_GENERATION, PersistenceUnitProperties.DROP_AND_CREATE);
+        jpaProperties.put(DDL_GENERATION, PersistenceUnitProperties.CREATE_ONLY);
 //        jpaProperties.put(CREATE_JDBC_DDL_FILE, "create.sql");
 //        jpaProperties.put(DROP_JDBC_DDL_FILE, "drop.sql");
 //        jpaProperties.put(DDL_GENERATION_MODE, DDL_BOTH_GENERATION);

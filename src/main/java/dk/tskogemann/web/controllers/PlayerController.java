@@ -35,11 +35,11 @@ public class PlayerController {
     @RequestMapping(value = "/add")
     @Transactional
     public String add(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
-                      @RequestParam(value = "position", required = false) String[] positions) {
+                      @RequestParam(value = "position", required = false) Position[] positions) {
 
         Player p = new Player().setFirstName(firstName).setLastName(lastName);
-        for (String position : positions) {
-            p.addPosition(Position.valueOf(position));
+        for (Position position : positions) {
+            p.addPosition(position);
         }
         em.persist(p);
         return "forward:/player/list";

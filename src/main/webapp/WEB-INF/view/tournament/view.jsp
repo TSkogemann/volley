@@ -6,8 +6,7 @@
 <html>
 <head><title>View Tournament</title></head>
 <body>
-<h3>$Tournament: {tournament.name}</h3>
-
+<h3>Tournament: ${tournament.name}</h3>
 <table width="100%">
     <tr>
         <td width="50%">
@@ -17,11 +16,15 @@
                         Participants
                     </td>
                 </tr>
-                <tr>
-                    <c:forEach items="${tournament.tournamentParticipants}" var="participant">
-                        <td><a href="<c:url value="/tournament/removePlayer?id=${tournament.id}&playerId=${participant.player.id}"/>">${participant.player.fullName}</a></td>
-                    </c:forEach>
-                </tr>
+
+                <c:forEach items="${tournament.tournamentParticipants}" var="participant">
+                    <tr>
+                        <td>
+                            <a href="<c:url value="/tournament/removePlayer?id=${tournament.id}&playerId=${participant.player.id}"/>">${participant.player.fullName}</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+
             </table>
         </td>
         <td width="50%">
@@ -29,12 +32,16 @@
                 <tr>
                     <td>Available</td>
                 </tr>
-                <tr>
-                    <c:forEach items="${available}" var="player">
+
+                <c:forEach items="${available}" var="player">
+                    <tr>
                         <jsp:useBean id="player" scope="page" type="dk.tskogemann.data.entities.Player"/>
-                        <td><a href="<c:url value="/tournament/addPlayer?id=${tournament.id}&playerId=${player.id}"/>">${player.fullName}</a></td>
-                    </c:forEach>
-                </tr>
+                        <td>
+                            <a href="<c:url value="/tournament/addPlayer?id=${tournament.id}&playerId=${player.id}"/>">${player.fullName}</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+
             </table>
         </td>
     </tr>

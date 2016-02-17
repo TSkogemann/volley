@@ -1,13 +1,12 @@
 package dk.tskogemann.data.entities;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import javax.persistence.*;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * @author Klaus Groenbaek
@@ -24,11 +23,11 @@ public class Match {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    @OneToMany(mappedBy = "match", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
     private Collection<Set> sets;
 
 
-    @OneToMany(mappedBy = "match", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL)
     private Collection<Team> teams;
 
     @ManyToOne

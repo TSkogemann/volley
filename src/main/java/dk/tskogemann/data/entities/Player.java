@@ -1,16 +1,13 @@
 package dk.tskogemann.data.entities;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import javax.persistence.*;
-
 import com.google.common.base.Joiner;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * @author Klaus Groenbaek
@@ -59,6 +56,6 @@ public class Player {
     }
 
     public String getPositionsAsString() {
-        return Joiner.on(",").join(getPositions());
+        return Joiner.on(", ").join(getPositions());
     }
 }

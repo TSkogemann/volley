@@ -1,19 +1,18 @@
 package dk.tskogemann.data.entities;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import javax.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * @author Klaus Groenbaek
  *         Created 15/02/16.
  */
 @Entity
-//@Getter
+@Getter
 @Setter
 public class Round {
     @Id
@@ -28,7 +27,7 @@ public class Round {
     private int round;
 
 
-    @OneToMany(mappedBy = "round", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "round", cascade = CascadeType.ALL)
     private Collection<Match> matches;
 
     protected Round() {

@@ -1,6 +1,7 @@
 package dk.tskogemann.web.controllers;
 
 import dk.tskogemann.data.entities.Player;
+import dk.tskogemann.data.entities.Round;
 import dk.tskogemann.data.entities.Tournament;
 import dk.tskogemann.data.entities.TournamentParticipation;
 import org.springframework.stereotype.Controller;
@@ -8,17 +9,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Klaus Groenbaek
@@ -95,4 +94,16 @@ public class TournamentController {
 
         return "forward:/tournament/view?id=" + id;
     }
+
+    @RequestMapping(value = "/newRound", method = RequestMethod.GET)
+    @Transactional
+    public String newRound(@RequestParam("tournamentId") long tournamentId) {
+
+        Tournament tournament = em.find(Tournament.class, tournamentId);
+        Round round = tournament.newRound();
+        em.persist(tournament);
+
+        return "forward:/round/view?roundId=" + round.getId();
+    }
+
 }

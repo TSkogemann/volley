@@ -1,14 +1,13 @@
 package dk.tskogemann.data.entities;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-
-import javax.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 
 /**
  * @author Klaus Groenbaek
@@ -24,10 +23,10 @@ public class Tournament {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "tournament", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
     private Collection<TournamentParticipation> tournamentParticipants;
 
-    @OneToMany(mappedBy = "tournament", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL)
     private Collection<Round> rounds;
 
     @Column
