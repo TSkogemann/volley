@@ -3,20 +3,18 @@ package dk.tskogemann.data.algoritmer;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.function.Function;
 
 /**
  * Created by thomas on 17-02-2016.
  */
-public class RoundRobinAlgoritmeTest {
+public class RoundRobinAlgoritmTest {
 
     @Test
     public void test27PlayersOn3Courts(){
         // max players = 6, min players=5, courts = 3
 int numberOfPlayers = 27;
-        RoundRobinAlgoritme test = new RoundRobinAlgoritme(numberOfPlayers,6,5,3);
+        RoundRobinAlgoritm test = new RoundRobinAlgoritm(numberOfPlayers,6,5,3);
         ArrayList<Integer> result = test.createRound();
         ArrayList<Integer> expResult = new ArrayList<>();
         expResult.add(6);
@@ -31,7 +29,7 @@ int numberOfPlayers = 27;
     public void test30playersOn3Courts(){
         // max players = 6, min players=5, courts = 3
 int numberOfPlayers = 30;
-        RoundRobinAlgoritme test = new RoundRobinAlgoritme(numberOfPlayers,6,5,3);
+        RoundRobinAlgoritm test = new RoundRobinAlgoritm(numberOfPlayers,6,5,3);
         ArrayList<Integer> result = test.createRound();
         ArrayList<Integer> expResult = new ArrayList<>();
         expResult.add(5);
@@ -48,7 +46,7 @@ int numberOfPlayers = 30;
         // max players = 6, min players=5, courts = 3
 
         int numberOfPlayers = 34;
-        RoundRobinAlgoritme test = new RoundRobinAlgoritme(numberOfPlayers,6,5,3);
+        RoundRobinAlgoritm test = new RoundRobinAlgoritm(numberOfPlayers,6,5,3);
         ArrayList<Integer> result = test.createRound();
         ArrayList<Integer> expResult = new ArrayList<>();
         expResult.add(6);
@@ -66,7 +64,7 @@ int numberOfPlayers = 30;
         // max players = 6, min players=5, courts = 3
 
         int numberOfPlayers = 100;
-        RoundRobinAlgoritme test = new RoundRobinAlgoritme(numberOfPlayers,6,5,3);
+        RoundRobinAlgoritm test = new RoundRobinAlgoritm(numberOfPlayers,6,5,3);
         ArrayList<Integer> result = test.createRound();
         ArrayList<Integer> expResult = new ArrayList<>();
         expResult.add(6);
